@@ -4,6 +4,9 @@ import java.io.*;
 
 public class Main {
 
+    private static final String MATRIX_1_PARSING_COMMENT = "Double number for matrix 1 at ";
+    private static final String MATRIX_2_PARSING_COMMENT = "Double number for matrix 2 at ";
+
     public static void main(String[] args) {
         // write your code here
 
@@ -21,16 +24,8 @@ public class Main {
             Double[][] matrix1 = new Double[dimentionN][dimentionM];
             Double[][] matrix2 = new Double[dimentionM][dimentionP];
 
-            for (int i = 0; i < dimentionN; i++)
-                for (int j = 0; j < dimentionM; j++) {
-                    System.out.print("Double number for matrix 1 at " + i + j + ":");
-                    matrix1[i][j] = Double.parseDouble(in_stream_char.readLine());
-                }
-            for (int i = 0; i < dimentionM; i++)
-                for (int j = 0; j < dimentionP; j++) {
-                    System.out.print("Double number for matrix 2 at " + i + j + ":");
-                    matrix2[i][j] = Double.parseDouble(in_stream_char.readLine());
-                }
+            parseMatrix(in_stream_char, dimentionN, dimentionM, matrix1, MATRIX_1_PARSING_COMMENT);
+            parseMatrix(in_stream_char, dimentionM, dimentionP, matrix2, MATRIX_2_PARSING_COMMENT);
 
             Double[][] matrix3 = new Double[dimentionN][dimentionP];
             for (int i = 0; i < dimentionN; i++)
@@ -54,5 +49,13 @@ public class Main {
         }
 
 
+    }
+
+    private static void parseMatrix(BufferedReader in_stream_char, int dimentionN, int dimentionM, Double[][] matrix1, String s) throws IOException {
+        for (int i = 0; i < dimentionN; i++)
+            for (int j = 0; j < dimentionM; j++) {
+                System.out.print(s + i + j + ":");
+                matrix1[i][j] = Double.parseDouble(in_stream_char.readLine());
+            }
     }
 }
